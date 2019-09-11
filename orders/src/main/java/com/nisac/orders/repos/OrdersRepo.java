@@ -1,4 +1,8 @@
 package com.nisac.orders.repos;
 
-public interface OrdersRepo {
+import com.nisac.orders.model.Orders;
+import org.springframework.data.repository.CrudRepository;
+
+public interface OrdersRepo extends CrudRepository<Orders, Long>
+{
 }
