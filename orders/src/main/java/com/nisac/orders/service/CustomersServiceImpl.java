@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Transactional
 @Service(value = "customerService")
@@ -22,7 +22,7 @@ public class CustomersServiceImpl implements CustomersService
     private OrdersRepo restOrderRepo;
 
     @Override
-    public List<Customers> findAll()
+    public ArrayList<Customers> findAll()
     {
         ArrayList<Customers> list = new ArrayList<>();
         restCustomerRepo.findAll().iterator().forEachRemaining(list::add);
@@ -30,10 +30,15 @@ public class CustomersServiceImpl implements CustomersService
     }
 
     @Override
-    public List<Orders> findAllOrdersByName(String name) throws EntityNotFoundException
+    public Customers findCustomersByName(String name) throws EntityNotFoundException
     {
-        ArrayList<Orders> list = new ArrayList<>();
-        return list;
+        Customers customer = restCustomerRepo.findByCustName(name);
+
+        if(customer == null)
+        {
+            throw new EntityNotFoundException("Customer " + name + " not found.");
+        }
+        return customer;
     }
 
     @Override

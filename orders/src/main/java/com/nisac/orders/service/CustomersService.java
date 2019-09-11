@@ -3,15 +3,16 @@ package com.nisac.orders.service;
 import com.nisac.orders.model.Customers;
 import com.nisac.orders.model.Orders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CustomersService
 {
     //get all customers
-    List<Customers> findAll();
+    ArrayList<Customers> findAll();
 
     //get orders by name
-    List<Orders> findAllOrdersByName(String name);
+    Customers findCustomersByName(String name);
 
     //delete
     void delete(long custCode);
