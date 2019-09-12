@@ -44,11 +44,10 @@ public class Customers
     @Column
     private String phone;
 
-    @OneToMany(mappedBy = "custCode",
+    @OneToMany(mappedBy = "customer",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    @JsonIgnoreProperties("customers")
-
+    @JsonIgnoreProperties("customer")
     private List<Orders> orders = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)

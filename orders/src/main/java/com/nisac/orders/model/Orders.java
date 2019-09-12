@@ -1,6 +1,5 @@
 package com.nisac.orders.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -21,8 +20,8 @@ public class Orders
 
     @ManyToOne
     @JoinColumn(name = "custCode", nullable =  false)
-    @JsonIgnore
-    private Customers custCode;
+    @JsonIgnoreProperties("orders")
+    private Customers customer;
 
     @Column
     private String ordDescription;
@@ -32,11 +31,11 @@ public class Orders
 
     public Orders(double ordAmount,
                   double advanceAmt,
-                  Customers custCode,
+                  Customers customer,
                   String ordDescription) {
         this.ordAmount = ordAmount;
         this.advanceAmount = advanceAmt;
-        this.custCode = custCode;
+        this.customer = customer;
         this.ordDescription = ordDescription;
     }
 
@@ -73,10 +72,10 @@ public class Orders
     }
 
     public Customers getCustomer() {
-        return custCode;
+        return customer;
     }
 
-    public void setCustomer(Customers custCode) {
-        this.custCode = custCode;
+    public void setCustomer(Customers customer) {
+        this.customer = customer;
     }
 }
